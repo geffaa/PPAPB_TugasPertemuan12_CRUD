@@ -18,13 +18,24 @@ class AddNoteActivity : AppCompatActivity() {
 
         db = NoteDatabaseHelper(this)
 
-        binding.saveButton.setOnClickListener{
+        binding.backButton.setOnClickListener {
+            // Panggil onBackPressed() atau finish() untuk menutup aktivitas
+            onBackPressed()
+        }
+
+        binding.saveButton.setOnClickListener {
             val title = binding.titleEditText.text.toString()
             val content = binding.contentEditText.text.toString()
-            val note = Note(0, title, content)
-            db.insertNote(note)
-            finish()
-            Toast.makeText(this, "Note saved", Toast.LENGTH_SHORT).show()
+
+            if (title.isNotEmpty() && content.isNotEmpty()) {
+                val note = Note(0, title, content)
+                db.insertNote(note)
+                finish()
+                Toast.makeText(this, "Note saved", Toast.LENGTH_SHORT).show()
+            } else {
+                // Menampilkan pesan kesalahan jika EditText tidak diisi
+                Toast.makeText(this, "Judul dan konten catatan harus diisi", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 }

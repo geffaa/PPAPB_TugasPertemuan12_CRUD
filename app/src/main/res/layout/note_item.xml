@@ -6,13 +6,15 @@
     android:layout_height="wrap_content"
     app:cardCornerRadius="8dp"
     android:elevation="4dp"
-    app:cardUseCompatPadding="true">
+    app:cardUseCompatPadding="true"
+    android:background="@drawable/border_recycler">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="16dp"
+        android:layout_margin="8dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -26,7 +28,7 @@
                 android:layout_height="wrap_content"
                 android:text="Title"
                 android:fontFamily="@font/poppins"
-                android:textColor="@color/orange"
+                android:textColor="@color/green2"
                 android:textSize="18sp"
                 android:textStyle="bold">
             </TextView>

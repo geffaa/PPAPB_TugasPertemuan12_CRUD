@@ -1,5 +1,6 @@
 package com.example.ppapb_tugaspertemuan12_crud
 
+import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
@@ -43,10 +44,29 @@ class NotesAdapter(private var notes: List<Note>, context: Context) :
         }
 
         holder.deleteButton.setOnClickListener{
+            // Menampilkan dialog konfirmasi sebelum menghapus
+            showDeleteConfirmationDialog(holder.itemView.context, note)
+        }
+    }
+
+    private fun showDeleteConfirmationDialog(context: Context, note: Note) {
+        val builder = AlertDialog.Builder(context)
+        builder.setTitle("Konfirmasi Hapus")
+        builder.setMessage("Apakah Anda yakin ingin menghapus catatan ini?")
+
+        builder.setPositiveButton("Ya") { _, _ ->
+            // Hapus catatan jika pengguna menekan tombol "Ya"
             db.deleteNote(note.id)
             refreshData(db.getAllNotes())
-            Toast.makeText(holder.itemView.context, "Note deleted", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "Catatan dihapus", Toast.LENGTH_SHORT).show()
         }
+
+        builder.setNegativeButton("Tidak") { _, _ ->
+            // Tidak melakukan apa-apa jika pengguna memilih untuk tidak menghapus
+        }
+
+        val dialog = builder.create()
+        dialog.show()
     }
 
     fun refreshData(newNotes: List<Note>) {

@@ -3,9 +3,9 @@
     <style name="Base.Theme.PPAPB_TugasPertemuan12_CRUD" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
-        <item name="colorPrimary">@color/orange</item>
-        <item name="colorPrimaryVariant">@color/orange</item>
-        <item name="android:statusBarColor">@color/orange</item>
+        <item name="colorPrimary">@color/green2</item>
+        <item name="colorPrimaryVariant">@color/green2</item>
+        <item name="android:statusBarColor">@color/green2</item>
         <item name="backgroundColor">@color/soft_cream</item>
     </style>
 

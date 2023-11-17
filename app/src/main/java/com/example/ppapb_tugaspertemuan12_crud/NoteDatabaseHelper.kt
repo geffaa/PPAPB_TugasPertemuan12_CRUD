@@ -28,14 +28,18 @@ class NoteDatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_
         onCreate(db)
     }
 
-    fun insertNote(note: Note){
-        val db = writableDatabase
-        val values = ContentValues().apply {
-            put(COLUMN_TITLE, note.title)
-            put(COLUMN_CONTENT, note.content)
+    fun insertNote(note: Note) {
+        if (note.title.isNotEmpty() && note.content.isNotEmpty()) {
+            val db = writableDatabase
+            val values = ContentValues().apply {
+                put(COLUMN_TITLE, note.title)
+                put(COLUMN_CONTENT, note.content)
+            }
+            db.insert(TABLE_NAME, null, values)
+            db.close()
+        } else {
+            throw IllegalArgumentException("Judul dan konten catatan harus diisi.")
         }
-        db.insert(TABLE_NAME, null, values)
-        db.close()
     }
 
     fun getAllNotes(): List<Note> {
